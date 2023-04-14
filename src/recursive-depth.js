@@ -25,7 +25,7 @@ class DepthCalculator {
 //     }
 //     console.log(count)
 //     return count
-//   }
+  }
 }
 
 module.exports = {
