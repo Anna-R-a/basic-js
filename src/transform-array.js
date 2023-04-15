@@ -22,22 +22,43 @@ function transform(arr) {
   if (arr[i]=== '--discard-next'){
     i++
   }
-  if (arr[i+1]=== '--discard-prev'){
-    i = i+2
+  else if (arr[i+1]=== '--discard-prev'){
+    i = i++;
   }
-  if (arr[i]=== '--double-next'){
+  else if (i === 0 && arr[i]==='--discard-prev'){
+    newArr.push(arr[1])
+      i++;
+  }
+  else if (i === 0 && arr[i] === '--double-prev'){
+    newArr.push(arr[1])
+    i++;
+  }
+  else if (i===arr.length-1 && arr[i]=== '--double-next'){
+    i++;
+  }
+  else if (arr[i]=== '--double-next'){
     newArr.push(arr[i+1])
   }
-  if (arr[i]=== '--double-prev'){
-    newArr.push(arr[i+1])
+  else if (arr[i]=== '--double-prev' && i !== 0){
+    newArr.push(arr[i-1])
   }
-  if (arr[0]==='--discard-prev' || arr[0]==='--double-prev'){
+  else if (arr[i+1]=== '--discard-next' && arr[i+3]=== '--double-prev'){
+    newArr.push(arr[i])
+    i = i+3;
+  }
+  else if (arr[i+1]=== '--discard-next' && arr[i+3]=== '--discard-prev'){
+    newArr.push(arr[i])
+    i = i+3;
+  }
+  else if (arr[i+1]=== '--double-next' && arr[i+3]=== '--discard-prev'){
+    newArr.push(arr[i],arr[i+2])
+    i = i+3;
   }
   else{
     newArr.push(arr[i])
   }
 }
-console.log(newArr)
+console.log(arr, newArr)
   return newArr
 }
 
